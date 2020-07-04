@@ -3,19 +3,27 @@ import React, { PureComponent } from 'react';
 //impo rt your UI from react-native
 import { View, Text, StyleSheet } from 'react-native';
 //import your action creator from store for getting assynchronous operations.
-import {  getPeople } from './redux/store';
+import {  getPeople } from './redux/actions/user';
 //import connect method connecting your component to have access to redux state and dispatchers
 import { connect } from 'react-redux';
 
 class PeopleList extends PureComponent {
     componentDidMount() {
         //Dispatch your dispatcher
+        console.log(1234);
+        console.log(this.props.getPeople);
         this.props.getPeople();
     }
     render() {
-      console.log(1111);
+      console.log(54321);
+      console.log(this.props.getPeople);
       console.log(this.props);
       const { people, loading } = this.props;
+      return (
+        <View style={styles.container}>
+            <Text style={styles.welcome}>Loading...........</Text>
+        </View>
+        )
       console.log(people.length);
         if(!loading) {
             return (
