@@ -12,11 +12,13 @@ const { height, width } = Dimensions.get("screen");
 
 import argonTheme from "../constants/Theme";
 import Images from "../constants/Images";
+import { Alert } from 'react-native'; // to show alerts in app
 
 import { useDispatch } from 'react-redux';
-import { login } from '../redux2/actions';
+import { login } from '../redux/actions/user';
 
 import { connect } from 'react-redux';
+import {isLogin} from '../redux/reducers'
 
 class Onboarding extends React.Component {
  
@@ -28,10 +30,15 @@ class Onboarding extends React.Component {
     };
   }
   
+  handleLoginClick = () => {
+    //Alert.alert("xxx", this.state.username);
+    //Alert.alert('Login Failed', 'Username or Password is incorrect');
+    //this.props.login({'username': this.state.username, 'password': this.state.password });
+    this.props.login({'username': "admin", 'password': 1234 }, this.props.navigation);
+  }
   
   render() {
     const { navigation } = this.props;
-
     return (
       <Block flex style={styles.container}>
         <StatusBar hidden />
@@ -73,7 +80,7 @@ class Onboarding extends React.Component {
               <Block flex={1.25} right>
                 <Button center color={argonTheme.COLORS.SECONDARY} style={styles.optionsButton}
                 textStyle={{ color: argonTheme.COLORS.BLACK }}
-                onPress={() => useDispatch(this.props.login({'username': this.state.username, 'password': this.state.password }))} 
+                onPress={() => this.handleLoginClick()} 
                 >
                   Không Tài Khoản
                 </Button>
@@ -127,6 +134,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => ({
   people: state.people,
   loading: state.loading,
+  isLogin: isLogin(state)
 })
 
 //Map your action creators to your props.

@@ -76,7 +76,6 @@ export default props => {
           <GalioProvider theme={argonTheme}>
             <Block flex>
               <Screens />
-              <PeopleList />
             </Block>
           </GalioProvider>
         </NavigationContainer>

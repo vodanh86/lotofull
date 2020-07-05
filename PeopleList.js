@@ -10,21 +10,10 @@ import { connect } from 'react-redux';
 class PeopleList extends PureComponent {
     componentDidMount() {
         //Dispatch your dispatcher
-        console.log(1234);
-        console.log(this.props.getPeople);
         this.props.getPeople();
     }
     render() {
-      console.log(54321);
-      console.log(this.props.getPeople);
-      console.log(this.props);
-      const { people, loading } = this.props;
-      return (
-        <View style={styles.container}>
-            <Text style={styles.welcome}>Loading...........</Text>
-        </View>
-        )
-      console.log(people.length);
+        const { people, loading } = this.props;
         if(!loading) {
             return (
             <View style={styles.container}>
@@ -61,11 +50,10 @@ const styles = StyleSheet.create({
     },
   })
   
-
 //Map the redux state to your props.
 const mapStateToProps = state => ({
-    people: state.people,
-    loading: state.loading,
+    people: state.user.people,
+    loading: state.user.loading,
   })
 
 //Map your action creators to your props.

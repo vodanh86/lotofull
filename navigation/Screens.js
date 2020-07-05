@@ -15,6 +15,7 @@ import Profile from "../screens/Profile";
 import Register from "../screens/Register";
 import Elements from "../screens/Elements";
 import Articles from "../screens/Articles";
+import Result from "../screens/Result";
 // drawer
 import CustomDrawerContent from "./Menu";
 
@@ -177,6 +178,29 @@ function HomeStack(props) {
   );
 }
 
+function ResultStack(props) {
+  return (
+    <Stack.Navigator mode="card" headerMode="screen">
+      <Stack.Screen
+        name="Result"
+        component={Result}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              title="Kết quả sổ xố miền Bắc"
+              search
+              options
+              navigation={navigation}
+              scene={scene}
+            />
+          ),
+          cardStyle: { backgroundColor: "#F8F9FE" }
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+
 export default function OnboardingStack(props) {
   return (
     <Stack.Navigator mode="card" headerMode="none">
@@ -225,6 +249,7 @@ function AppStack(props) {
     >
       <Drawer.Screen name="Home" component={HomeStack} />
       <Drawer.Screen name="Logout" component={OnboardingStack} />
+      <Drawer.Screen name="Kết quả xổ số" component={ResultStack} />
       <Drawer.Screen name="Profile" component={ProfileStack} />
       <Drawer.Screen name="Account" component={Register} />
       <Drawer.Screen name="Elements" component={ElementsStack} />
